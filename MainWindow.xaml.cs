@@ -23,8 +23,35 @@ namespace UD03_TaskFlowDAM
 
         // Propiedades enlazadas del formulario de inserción
 
+        private string _nuevoTitulo = string.Empty;
+        public string NuevoTitulo { get => _nuevoTitulo; set { _nuevoTitulo = value; OnPropertyChanged(); } }
+
+        private string _nuevoModulo = "DI";
+        public string NuevoModulo { get => _nuevoModulo; set { _nuevoModulo = value; OnPropertyChanged(); } }
+
+        private DateTime? _nuevaFechaLimite = DateTime.Now;
+        public DateTime? NuevaFechaLimite { get => _nuevaFechaLimite; set { _nuevaFechaLimite = value; OnPropertyChanged(); } }
+
+        private string _nuevaPrioridad = "Media";
+        public string NuevaPrioridad { get => _nuevaPrioridad; set { _nuevaPrioridad = value; OnPropertyChanged(); } }
+
+        private bool _nuevoUrgente;
+        public bool NuevoUrgente { get => _nuevoUrgente; set { _nuevoUrgente = value; OnPropertyChanged(); } }
+
         // Propiedades reactivas para métricas y estado
- 
+
+        private double _progresoPorcentaje;
+        public double ProgresoPorcentaje { get => _progresoPorcentaje; set { _progresoPorcentaje = value; OnPropertyChanged(); } }
+
+        private string _textoProgreso = "0 de 0 completadas (0%)";
+        public string TextoProgreso { get => _textoProgreso; set { _textoProgreso = value; OnPropertyChanged(); } }
+
+        private int _tareasPendientesCount;
+        public int TareasPendientesCount { get => _tareasPendientesCount; set { _tareasPendientesCount = value; OnPropertyChanged(); } }
+
+        private string _estadoApp = "Listo para operar";
+        public string EstadoApp { get => _estadoApp; set { _estadoApp = value; OnPropertyChanged(); } }
+
         public ObservableCollection<Tarea> Tareas { get; } = new();
 
 
@@ -50,12 +77,42 @@ namespace UD03_TaskFlowDAM
 
             foreach (var tarea in listaTareas)
             {
+                tarea.PropertyChanged += Tarea_PropertyChanged;
                 Tareas.Add(tarea);
-            }  
+            }
+            ActualizarMetricas();
+        }
+
+        private void ActualizarMetricas()
+        {
+            if (Tareas.Count == 0)
+            {
+                ProgresoPorcentaje = 0;
+                TextoProgreso = "0 de 0 completadas (0%)";
+                TareasPendientesCount = 0;
+                return;
+            }
+
+            int total = Tareas.Count;
+            int completadas = Tareas.Count(t => t.Completada);
+
+            ProgresoPorcentaje = (double)completadas / total * 100;
+            TextoProgreso = $"{completadas} de {total} completadas ({Math.Round(ProgresoPorcentaje)}%)";
+            TareasPendientesCount = total - completadas;
         }
 
         private void Tareas_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
+            ActualizarMetricas();
+        }
+
+        private void Tarea_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Tarea.Completada))
+            {
+                _context.SaveChanges();
+                ActualizarMetricas();
+            }
         }
 
         /// <summary>
@@ -64,31 +121,31 @@ namespace UD03_TaskFlowDAM
         /// </summary>
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //if (string.IsNullOrWhiteSpace(NuevoTitulo))
-            //{
-            //    MessageBox.Show("Por favor, introduzca un título para la tarea.", "Campo Obligatorio",
-            //        MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
+            if (string.IsNullOrWhiteSpace(NuevoTitulo))
+            {
+                MessageBox.Show("Introduzca un título para la tarea.", "Campo Obligatorio",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             var nuevaTarea = new Tarea
             {
-                //Titulo = ,
-                //Modulo = ,
-                //FechaLimite = ,
-                //Prioridad = ,
-                //EsUrgente = ,
-                //Completada = 
+                Titulo = NuevoTitulo,
+                Modulo = NuevoModulo,
+                FechaLimite = NuevaFechaLimite,
+                Prioridad = NuevaPrioridad,
+                EsUrgente = NuevoUrgente,
+                Completada = false
             };
 
-            // 1. Guardar en SQLite mediante Entity Framework Core
             _context.Tareas.Add(nuevaTarea);
             _context.SaveChanges();
 
-            // 2. Suscribir y añadir a la ObservableCollection para reflejar en XAML
+            nuevaTarea.PropertyChanged += Tarea_PropertyChanged;
             Tareas.Insert(0, nuevaTarea);
 
-            // 3. Limpiar formulario y notificar
+            EstadoApp = "Tarea agregada con éxito";
+
             BtnLimpiar_Click(sender, e);
         }
 
@@ -98,7 +155,11 @@ namespace UD03_TaskFlowDAM
         /// </summary>
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-    
+            NuevoTitulo = string.Empty;
+            NuevoModulo = "DI";
+            NuevaFechaLimite = DateTime.Now;
+            NuevaPrioridad = "Media";
+            NuevoUrgente = false;
         }
 
         /// <summary>
@@ -119,7 +180,7 @@ namespace UD03_TaskFlowDAM
                     _context.Tareas.Remove(tarea);
                     _context.SaveChanges();
                     Tareas.Remove(tarea);
-
+                    EstadoApp = "Tarea eliminada";
                 }
             }
         }
