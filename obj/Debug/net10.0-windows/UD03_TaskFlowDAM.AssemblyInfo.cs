@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UD03_TaskFlowDAM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4f69721ce79cf392ac42dfcd03129c855cb3625")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24d441f6df69f290f422b872db3c845d4e805ea2")]
 [assembly: System.Reflection.AssemblyProductAttribute("UD03_TaskFlowDAM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UD03_TaskFlowDAM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

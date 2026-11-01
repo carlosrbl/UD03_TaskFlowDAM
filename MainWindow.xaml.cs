@@ -32,9 +32,6 @@ namespace UD03_TaskFlowDAM
         private DateTime? _nuevaFechaLimite = DateTime.Now;
         public DateTime? NuevaFechaLimite { get => _nuevaFechaLimite; set { _nuevaFechaLimite = value; OnPropertyChanged(); } }
 
-        private string _nuevaPrioridad = "Media";
-        public string NuevaPrioridad { get => _nuevaPrioridad; set { _nuevaPrioridad = value; OnPropertyChanged(); } }
-
         private bool _nuevoUrgente;
         public bool NuevoUrgente { get => _nuevoUrgente; set { _nuevoUrgente = value; OnPropertyChanged(); } }
 
@@ -128,12 +125,16 @@ namespace UD03_TaskFlowDAM
                 return;
             }
 
+            string prioridadSeleccionada = Prioridad.Media;
+            if (RbBaja.IsChecked == true) prioridadSeleccionada = Prioridad.Baja;
+            if (RbAlta.IsChecked == true) prioridadSeleccionada = Prioridad.Alta;
+
             var nuevaTarea = new Tarea
             {
                 Titulo = NuevoTitulo,
                 Modulo = NuevoModulo,
                 FechaLimite = NuevaFechaLimite,
-                Prioridad = NuevaPrioridad,
+                Prioridad = prioridadSeleccionada, 
                 EsUrgente = NuevoUrgente,
                 Completada = false
             };
@@ -158,8 +159,9 @@ namespace UD03_TaskFlowDAM
             NuevoTitulo = string.Empty;
             NuevoModulo = "DI";
             NuevaFechaLimite = DateTime.Now;
-            NuevaPrioridad = "Media";
             NuevoUrgente = false;
+
+            RbMedia.IsChecked = true; 
         }
 
         /// <summary>
