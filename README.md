@@ -12,6 +12,7 @@ Para esta práctica hemos montado una estructura limpia en C# y WPF donde la int
 - **Estándares aplicados**: ISO 9241-110, WCAG 2.1 (Nivel AA), Heurísticas de Nielsen.
 - **Elemento evaluado**: Interfaz de escritorio (WPF) correspondiente al archivo.
 - **Nota**: Al no disponer del código XAML subyacente, la evaluación de UI Automation se realiza de forma deductiva y prescriptiva basándose en la representación visual.
+- **Enlace**: https://share.gemini.google/R4HpjYWx7cOl
 
 ![Captura de pantalla del prompt](./img/Prompt.png)
 
@@ -32,6 +33,16 @@ Para esta práctica hemos montado una estructura limpia en C# y WPF donde la int
 - **Agrupación semántica (Ley de Región Común - Gestalt)**: `Positivo`: El uso de los GroupBox ("NUEVA TAREA" y "LISTADO DE TAREAS ACTIVAS") enmarca perfectamente los controles relacionados, reduciendo la carga cognitiva del usuario.   
 
 ### 3.4 MATRIZ DE INCIDENCIAS POR SEVERIDAD
+**Escala de Nielsen: 0 (Sin importancia) a 4 (Catastrófico).**
+
+| Elemento / Zona | Problema Detectado (Vector) | Severidad | Recomendación de Corrección (XAML / Diseño) |
+| :--- | :--- | :---: | :--- |
+| **Listado de Tareas** | Contraste insuficiente en el texto de las tareas completadas. | 3 (Grave) | Oscurecer el gris del texto tachado (ej. #767676) para garantizar un ratio de contraste mínimo de 4.5:1 contra el fondo blanco. |
+| **Listado de Tareas** | Los botones de "Eliminar" (icono de papelera) tienen una diana táctil muy pequeña. | 2 (Moderado) | Aumentar el tamaño del botón. Envolver la imagen/path en un Button con MinHeight="36" y MinWidth="36", o añadir un Padding transparente. |
+| **Barra de Estado** | El contador "Tareas pendientes: 2" se muestra en color rojo. | 1 (Cosmético) | Cambiar el color a negro o al azul corporativo para no generar alerta de error en una situación de uso normal. |
+| **Formulario Izquierdo** | Márgenes/Padding ajustados dentro del GroupBox. | 1 (Cosmético) | Añadir un Padding="10,15" en el contenedor interno del formulario para dar respiro (H8). |
+| **Código XAML (Deducido)** | Riesgo de botones de icono (papeleras) sin nombre accesible. | 3 (Grave) | Añadir AutomationProperties.Name="Eliminar tarea" en los botones de icono. |
+| **Código XAML (Deducido)** | Riesgo de falta de vinculación de Labels (ej. "Título de la tarea:") con TextBox. | 3 (Grave) | Sustituir TextBlock por Label usando Target="{Binding ElementName=...}". |
 
 ### 3.5 PUNTUACIÓN CUANTITATIVA Y CONCLUSIÓN
 **PUNTUACIÓN GLOBAL: 7.5 / 10**
