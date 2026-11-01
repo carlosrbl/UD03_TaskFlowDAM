@@ -9,9 +9,11 @@ Para esta práctica hemos montado una estructura limpia en C# y WPF donde la int
 ![Captura de pantalla de la ventana final en ejecución](./img/Ejecucion.png)
 
 ## 3. INFORME DE AUDITORÍA UX / A11Y – TASKFLOW DAM
-**Estándares aplicados**: ISO 9241-110, WCAG 2.1 (Nivel AA), Heurísticas de Nielsen.
-**Elemento evaluado**: Interfaz de escritorio (WPF) correspondiente al archivo.
-**Nota**: Al no disponer del código XAML subyacente, la evaluación de UI Automation se realiza de forma deductiva y prescriptiva basándose en la representación visual.
+- **Estándares aplicados**: ISO 9241-110, WCAG 2.1 (Nivel AA), Heurísticas de Nielsen.
+- **Elemento evaluado**: Interfaz de escritorio (WPF) correspondiente al archivo.
+- **Nota**: Al no disponer del código XAML subyacente, la evaluación de UI Automation se realiza de forma deductiva y prescriptiva basándose en la representación visual.
+
+![Captura de pantalla del prompt](./img/Prompt.png)
 
 ### 3.1 EVALUACIÓN DE HEURÍSTICAS DE NIELSEN
 - **H1: Visibilidad del estado del sistema**: `Positivo`: La interfaz informa excelentemente sobre el estado actual mediante la barra de progreso verde en la parte superior, que indica tanto el valor absoluto ("3 de 5 completadas") como el porcentaje ("60%"). La barra de estado inferior (StatusBar) también refleja el estado del sistema ("Listo para operar") y el contador de tareas pendientes.   
@@ -30,3 +32,10 @@ Para esta práctica hemos montado una estructura limpia en C# y WPF donde la int
 - **Agrupación semántica (Ley de Región Común - Gestalt)**: `Positivo`: El uso de los GroupBox ("NUEVA TAREA" y "LISTADO DE TAREAS ACTIVAS") enmarca perfectamente los controles relacionados, reduciendo la carga cognitiva del usuario.   
 
 ### 3.4 MATRIZ DE INCIDENCIAS POR SEVERIDAD
+
+### 3.5 PUNTUACIÓN CUANTITATIVA Y CONCLUSIÓN
+**PUNTUACIÓN GLOBAL: 7.5 / 10**
+
+- **Conclusión del Auditor**: `Positivo`: La aplicación "TaskFlow DAM" presenta una base arquitectónica visual muy sólida. Gestiona estupendamente la visibilidad del estado del sistema (H1), la prevención de errores mediante el deshabilitado de botones (H5) y la agrupación semántica (Gestalt). `Área de mejora`: Sin embargo, sufre penalizaciones en el apartado de Accesibilidad (WCAG) debido al bajo contraste de los elementos completados, lo cual es una barrera bloqueante para usuarios con discapacidad visual. Adicionalmente, requiere ajustes ergonómicos menores (tamaño de la diana en iconos de eliminación) y asegurar por código (XAML) que las propiedades de UI Automation están rigurosamente implementadas para que el nivel AA sea completamente certificado. Resolviendo las incidencias de severidad 3 de la tabla, la interfaz alcanzaría un estado óptimo y altamente accesible.   
+
+
