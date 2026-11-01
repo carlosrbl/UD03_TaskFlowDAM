@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|e:\\dam\\1dam\\desarrollo de interfaces\\practicas\\ud03_taskflowdam\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|e:\\dam\\1dam\\desarrollo de interfaces\\practicas\\ud03_taskflowdam\\viewmodels\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|solutionrelative:viewmodels\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|e:\\dam\\1dam\\desarrollo de interfaces\\practicas\\ud03_taskflowdam\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|e:\\dam\\1dam\\desarrollo de interfaces\\practicas\\ud03_taskflowdam\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|e:\\dam\\1dam\\desarrollo de interfaces\\practicas\\ud03_taskflowdam\\viewmodels\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{76316D1D-6D0D-C645-0FF0-AE519EFB2288}|UD03_TaskFlowDAM.csproj|solutionrelative:viewmodels\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "README.md",
+              "DocumentMoniker": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-11-01T20:02:49.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "README.txt",
               "DocumentMoniker": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\ViewModels\\README.txt",
               "RelativeDocumentMoniker": "ViewModels\\README.txt",
@@ -39,19 +56,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\MainWindow.xaml*",
-              "RelativeToolTip": "MainWindow.xaml*",
+              "ToolTip": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-10-12T17:11:38.565Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "E:\\DAM\\1DAM\\DESARROLLO DE INTERFACES\\PRACTICAS\\UD03_TaskFlowDAM\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -59,8 +76,7 @@
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAKYAAAAAAAAAAAAAwIgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-11T16:38:21.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-11T16:38:21.23Z"
             }
           ]
         }
