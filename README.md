@@ -5,4 +5,28 @@ Para esta práctica hemos montado una estructura limpia en C# y WPF donde la int
 - **Colección Reactiva y Data Binding**: Usamos una `ObservableCollection<Tarea>` vinculada al `DataContext` de la ventana. Esto nos permite conectar los controles de la interfaz con los datos mediante *Data Binding* bidireccional, haciendo que la barra de progreso y las métricas del día se recalculen solas al añadir o eliminar elementos.
 - **Persistencia con SQLite y EF Core**: Toda la información se almacena de forma local mediante Entity Framework Core y una base de datos SQLite. De esta manera, las tareas no se pierden al cerrar la aplicación y se cargan automáticamente cada vez que volvemos a iniciar el programa.
 
+## 2. Captura de Pantalla
 ![Captura de pantalla de la ventana final en ejecución](./img/Ejecucion.png)
+
+## 3. INFORME DE AUDITORÍA UX / A11Y – TASKFLOW DAM
+**Estándares aplicados**: ISO 9241-110, WCAG 2.1 (Nivel AA), Heurísticas de Nielsen.
+**Elemento evaluado**: Interfaz de escritorio (WPF) correspondiente al archivo.
+**Nota**: Al no disponer del código XAML subyacente, la evaluación de UI Automation se realiza de forma deductiva y prescriptiva basándose en la representación visual.
+
+### 3.1 EVALUACIÓN DE HEURÍSTICAS DE NIELSEN
+- **H1: Visibilidad del estado del sistema**: `Positivo`: La interfaz informa excelentemente sobre el estado actual mediante la barra de progreso verde en la parte superior, que indica tanto el valor absoluto ("3 de 5 completadas") como el porcentaje ("60%"). La barra de estado inferior (StatusBar) también refleja el estado del sistema ("Listo para operar") y el contador de tareas pendientes.   
+- **H3: Control y libertad del usuario**: `Positivo`: Se incluye un botón explícito de "Limpiar (Esc)" que sugiere soporte para cancelar acciones o limpiar el formulario de entrada rápidamente.   
+- **H4: Consistencia y estándares visuales**: `Observación`: La interfaz sigue convenciones de diseño estándar, ubicando los formularios de entrada a la izquierda y la lista de datos a la derecha. `Área de mejora`: El texto de la barra de estado "Tareas pendientes: 2" se muestra en color rojo. El rojo estándarmente denota errores o estados críticos (Severidad alta). Si es solo un contador informativo, rompe el estándar visual y puede generar falsa alarma.   
+- **H5: Prevención de errores**: `Positivo`: El botón "AÑADIR TAREA" se encuentra deshabilitado (estado grisáceo), lo que previene de forma proactiva el envío de formularios vacíos o incompletos. El uso de selectores cerrados (ComboBox para módulos, DatePicker para fechas) evita errores de formato en la entrada de datos.   
+- **H7: Flexibilidad y eficiencia de uso**: `Positivo`: La indicación "(Esc)" en el botón de limpieza es una excelente práctica para usuarios avanzados. `Requisito XAM`L: El botón "AÑADIR TAREA" debe poseer la propiedad IsDefault="True" para permitir el envío con la tecla Enter, y los campos deben tener un TabIndex secuencial lógico (del 0 al n) bajando por la columna izquierda.
+- **H8: Estética y minimalismo**: `Positivo`: El diseño es limpio, utiliza el espacio en blanco de forma razonable y no está saturado de información. `Área de mejora`: Los márgenes internos (padding) dentro del GroupBox "NUEVA TAREA" están ligeramente comprimidos; los TextBox y ComboBox están muy pegados a los bordes de su contenedor.   
+
+### 3.2 ACCESIBILIDAD Y UI AUTOMATION (UIA) - WCAG 2.1 AA
+- **Contraste cromático (WCAG 1.4.3 - Ratio mínimo 4.5:1)**: `Fallo Crítico`: Las tareas marcadas como completadas (ej. "Crear repositorio GitHub para la práctica") se muestran tachadas y con un color gris muy claro sobre fondo blanco. Este contraste es deficiente e incumple el nivel AA, haciendo el texto ilegible para personas con visión reducida. `Observación`: Las etiquetas de prioridad (ej. texto naranja "Media" sobre fondo naranja claro) deben ser revisadas mediante analizador de contraste, ya que visualmente rozan el límite del 4.5:1.   
+- **UI Automation (Requisitos prescriptivos para el XAML)**: `Etiquetas formales`: Los textos como "Título de la tarea:", "Módulo formativo:" y "Fecha límite:" deben ser controles <Label> con la propiedad Target="{Binding ElementName=IdentificadorDelInput}" para que los lectores de pantalla (Narrator, NVDA) asocien la etiqueta con el campo de texto. `Botones sin texto`: Los botones con el icono de la papelera en el listado carecen de texto visible. En el XAML, obligatoriamente deben contar con AutomationProperties.Name="Eliminar tarea" y un ToolTip descriptivo, de lo contrario, un lector de pantalla solo leerá "Botón".   
+
+### 3.3 ERGONOMÍA DE INTERACCIÓN (ISO 9241-110 / Fitts / Gestalt)
+- **Diana táctil (Ley de Fitts)**: `Incidencia`: Los iconos de la papelera para eliminar tareas son demasiado pequeños (visualmente inferiores a los 36-44px recomendados para áreas de clic seguras). Esto aumenta la probabilidad de clics accidentales en áreas adyacentes, especialmente en pantallas táctiles o para usuarios con problemas de motricidad fina.   
+- **Agrupación semántica (Ley de Región Común - Gestalt)**: `Positivo`: El uso de los GroupBox ("NUEVA TAREA" y "LISTADO DE TAREAS ACTIVAS") enmarca perfectamente los controles relacionados, reduciendo la carga cognitiva del usuario.   
+
+### 3.4 MATRIZ DE INCIDENCIAS POR SEVERIDAD
